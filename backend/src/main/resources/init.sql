@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS sys_user (
   email         VARCHAR(100)                          COMMENT '邮箱',
   role          ENUM('ELDER','FAMILY','DOCTOR','ADMIN') NOT NULL COMMENT '角色',
   avatar        VARCHAR(255)                          COMMENT '头像 URL',
-  status        TINYINT      DEFAULT 1                COMMENT '1启用 0禁用',
+  status        INT          DEFAULT 1                COMMENT '1启用 0禁用',
   create_time   DATETIME     DEFAULT NOW(),
   update_time   DATETIME     DEFAULT NOW() ON UPDATE NOW()
 ) COMMENT '系统用户表';
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS health_profile (
   user_id           BIGINT NOT NULL                    COMMENT '关联老年人用户ID',
   id_card           VARCHAR(18)                        COMMENT '身份证号',
   birth_date        DATE                               COMMENT '出生日期',
-  gender            TINYINT                            COMMENT '0女 1男',
+  gender            INT                                COMMENT '0女 1男',
   blood_type        VARCHAR(5)                         COMMENT '血型',
   address           TEXT                               COMMENT '家庭住址',
   emergency_contact VARCHAR(50)                        COMMENT '紧急联系人',
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS vital_sign (
   record_time      DATETIME NOT NULL                  COMMENT '记录时间',
   device_source    VARCHAR(50)                        COMMENT '数据来源设备',
   remark           VARCHAR(255),
-  is_abnormal      TINYINT DEFAULT 0                  COMMENT '0正常 1异常',
+  is_abnormal      INT DEFAULT 0                      COMMENT '0正常 1异常',
   create_time      DATETIME DEFAULT NOW()
 ) COMMENT '体征数据表';
 
@@ -80,8 +80,8 @@ CREATE TABLE IF NOT EXISTS alert_record (
   alert_level     ENUM('LOW','MEDIUM','HIGH') NOT NULL COMMENT '预警等级',
   alert_content   TEXT NOT NULL                       COMMENT '预警内容',
   notify_user_ids TEXT                                COMMENT '已通知用户ID列表(JSON)',
-  is_read         TINYINT DEFAULT 0,
-  is_handled      TINYINT DEFAULT 0,
+  is_read         INT DEFAULT 0,
+  is_handled      INT DEFAULT 0,
   handler_id      BIGINT,
   handle_remark   TEXT,
   create_time     DATETIME DEFAULT NOW()
@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS family_bind (
   elder_id     BIGINT NOT NULL,
   family_id    BIGINT NOT NULL,
   relation     VARCHAR(30)                            COMMENT '关系：子女/配偶/兄弟姐妹等',
-  bind_status  TINYINT DEFAULT 1                      COMMENT '1绑定 0解绑',
+  bind_status  INT DEFAULT 1                          COMMENT '1绑定 0解绑',
   create_time  DATETIME DEFAULT NOW()
 ) COMMENT '家属绑定关系表';
 
