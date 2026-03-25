@@ -1,0 +1,6 @@
+# 本地开发覆盖项（可选）
+# 若与 application.yml 默认值相同可留空，仅作示例占位
+
+spring:
+  jpa:
+    show-sql: true

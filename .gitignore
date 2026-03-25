@@ -1,0 +1,27 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Maven
+backend/target/
+backend/.mvn/
+!backend/.mvn/wrapper/maven-wrapper.jar
+
+# Node.js
+frontend/node_modules/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Logs
+*.log
+nohup.out
+
+# Environment
+.env
+.env.local
+
+# kubeconfig (sensitive)
+kubeconfig.yaml
