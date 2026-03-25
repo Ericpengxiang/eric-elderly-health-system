@@ -18,4 +18,10 @@ public interface AlertRecordRepository extends JpaRepository<AlertRecord, Long> 
     long countUnhandled();
 
     long countByCreateTimeAfter(LocalDateTime from);
+
+    @Query("SELECT DATE(a.createTime) as date, COUNT(a) as count FROM AlertRecord a WHERE a.createTime >= :from GROUP BY DATE(a.createTime) ORDER BY DATE(a.createTime)")
+    List<Object[]> countByDateAfter(@org.springframework.data.repository.query.Param("from") LocalDateTime from);
+
+    @Query("SELECT a.alertType, COUNT(a) as count FROM AlertRecord a GROUP BY a.alertType")
+    List<Object[]> countByAlertType();
 }
